@@ -88,13 +88,13 @@ class BlockchainController {
                     return res.status(200).json(block);
                 } else {
                     return res.status(404).send("Block Not Found!");
-                }
+                } 
             } else {
                 return res.status(404).send("Block Not Found! Review the Parameters!");
             }
             
         });
-    }
+    } 
 
     // This endpoint allows you to request the list of Stars registered by an owner
     getStarsByOwner() {
