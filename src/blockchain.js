@@ -111,18 +111,23 @@ class Blockchain {
             resolve(stars)
         });
     }
-
-    /**
-     * This method will return a Promise that will resolve with the list of errors when validating the chain.
-     * Steps to validate:
-     * 1. You should validate each block using `validateBlock`
-     * 2. Each Block should check the with the previousBlockHash
-     */
     validateChain() {
         let self = this;
         let errorLog = [];
+        let prevHash= null;
+        //get current hash from a block,
+        //move to next block and check if the blocks previous has equals current hash
         return new Promise(async (resolve, reject) => {
-            
+            self.chain.map((block)=>{
+                const res=block.validate()//current hash of the block
+                if( prevHash !== block.previousBlockHash){
+                    errorLog.push({
+                        "error":`block with hash ${block.hash} is out of sync`
+                    })
+                    //throw(new Error('block out of sync'))
+                }
+                prevHash=res;
+            });
         });
     }
 

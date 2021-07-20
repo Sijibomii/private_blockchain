@@ -23,12 +23,14 @@ class ApplicationServer {
 	}
 
 	initExpress() {
-		this.app.set("port", 8000);
+		this.app.set("port", 4000);
 	}
 
 	initExpressMiddleWare() {
 		this.app.use(morgan("dev"));
-		this.app.use(bodyParser.urlencoded({extended:true}));
+		this.app.use(bodyParser.urlencoded({
+			extended:true
+		}));
 		this.app.use(bodyParser.json());
 	}
 
